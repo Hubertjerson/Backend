@@ -34,7 +34,7 @@ class Contenedor {
                 id: result.length + 1
             }
             newData.push(payload)
-            await fs.promises.writeFile(`./${this.name}`, JSON.stringify(newData,null,2))
+            await fs.promises.writeFile(`./${this.name}`, JSON.stringify(newData, null, 2))
             return console.log('guardado\n')
         } catch (err) {
             console.log('[falla al guardar]', err)
@@ -43,9 +43,13 @@ class Contenedor {
         }
     }
     async getById(id) {
-        const data = fs.readFileSync(`${this.name}`)
-        const dataJson = JSON.parse(data)
-        return dataJson.find((item) => item.id === id)
+        try{
+            const data = fs.readFileSync(`${this.name}`)
+            const dataJson = JSON.parse(data)
+            return dataJson.find((item) => item.id === id)
+        }catch (err){
+            console.log(`Hubo un error al intentar obtener un elemento por su ID`)
+        }
     }
     async getAll() {
         try {
@@ -56,11 +60,15 @@ class Contenedor {
             return err
         }
     }
-    deleteById(id) {
-        const data = fs.readFileSync(`${this.name}`)
-        const dataJson = JSON.parse(data)
-        const newData = dataJson.filter((item) => item.id !== id)
-        fs.writeFileSync(`${this.name}`, JSON.stringify(newData))
+    async deleteById(id) {
+        try{
+            const data = fs.readFileSync(`${this.name}`)
+            const dataJson = JSON.parse(data)
+            const newData = dataJson.filter((item) => item.id !== id)
+            fs.writeFileSync(`${this.name}`, JSON.stringify(newData))
+        }catch(err){
+            console.log(`Hubo un error al intentar eliminar un elemento por su ID`)
+        }
     }
     async deleteAll() {
         try {
@@ -77,22 +85,22 @@ const contenedor = new Contenedor("productos.txt");
 
 const main = async () => {
 
-  const id1 = await contenedor.save({ title: "Escuadra", price: 75.66, thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png" });
-  const id2 = await contenedor.save({ title: "Calculadora", price: 57.75, thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png" });
-  const id3 = await contenedor.save({ title: "Globo Terráqueo", price: 100, thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png" });
+    const producto01 = await contenedor.save({ title: "Escuadra", price: 75.66, thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png" });
+    const producto02 = await contenedor.save({ title: "Calculadora", price: 57.75, thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png" });
+    const producto03 = await contenedor.save({ title: "Globo Terráqueo", price: 100, thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png" });
 
-  // LLAMANDO A UN OBJETO CON UN "ID" DADO POR USUARIO
-  //const object2 = await contenedor.getById(3);
-  //console.log(object2);
-
-
-  //        BORRAR UN ID
-  //await contenedor.deleteById();
+    // LLAMANDO A UN OBJETO CON UN "ID" DADO POR USUARIO
+    //const object2 = await contenedor.getById(3);
+    //console.log(object2);
 
 
-  // DEVOLVER UN ARRAY CON TODOS LOS OBJETOS GUARDADOS
-  //const allCurrentObjects = await contenedor.getAll();
-  //console.log(allCurrentObjects);
+    //        BORRAR UN ID
+    //await contenedor.deleteById();
+
+
+    // DEVOLVER UN ARRAY CON TODOS LOS OBJETOS GUARDADOS
+    //const allCurrentObjects = await contenedor.getAll();
+    //console.log(allCurrentObjects);
 
 };
 
