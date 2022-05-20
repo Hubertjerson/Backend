@@ -12,4 +12,12 @@ Incluir un archivo de texto 'productos.txt' y utilizar la clase Contenedor del d
 
 Antes de iniciar el servidor, colocar en el archivo 'productos.txt' tres productos como en el ejemplo del desafío anterior.
 
+# GLITCH
+
+https://prong-sprout-beach.glitch.me/
+
+https://prong-sprout-beach.glitch.me/Productos
+
+https://prong-sprout-beach.glitch.me/productoRandom
+
 ***

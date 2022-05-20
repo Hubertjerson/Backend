@@ -3,10 +3,10 @@
 
 2) Hacer que Usuario cuente con los siguientes atributos:
 
-        nombre: String  
-        apellido: String    
-        libros: Object[]    
-        mascotas: String[]  
+        nombre: String
+        apellido: String
+        libros: Object[]
+        mascotas: String[]
     Los valores de los atributos se deberán cargar a través del constructor, al momento de crear las instancias.
 
 3) Hacer que Usuario cuente con los siguientes métodos:
