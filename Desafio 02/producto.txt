@@ -1,0 +1,38 @@
+[
+  {
+    "title": "test product",
+    "price": 34.5,
+    "thumbnail": "thumbnail.jpg",
+    "id": 1
+  },
+  {
+    "title": "test product",
+    "price": 34.5,
+    "thumbnail": "thumbnail.jpg",
+    "id": 2
+  },
+  {
+    "title": "test product",
+    "price": 34.5,
+    "thumbnail": "thumbnail.jpg",
+    "id": 3
+  },
+  {
+    "title": "test product",
+    "price": 34.5,
+    "thumbnail": "thumbnail.jpg",
+    "id": 4
+  },
+  {
+    "title": "test product",
+    "price": 34.5,
+    "thumbnail": "thumbnail.jpg",
+    "id": 5
+  },
+  {
+    "title": "test product",
+    "price": 34.5,
+    "thumbnail": "thumbnail.jpg",
+    "id": 6
+  }
+]
