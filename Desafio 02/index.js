@@ -31,9 +31,9 @@ function menu() {
             case '1':
                 const obj = {
                     // PRODUCTOS AGREGANDO
-                    title: 'test product',
+                    title: 'Productos Agregados',
                     price: 34.5,
-                    thumbnail: 'thumbnail.jpg'
+                    thumbnail: 'Aqui Va una imagen del producto'
                 }
                 nuevoProducto.save(obj)
                 mostrarMenu()

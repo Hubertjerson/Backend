@@ -1,38 +1,14 @@
 [
   {
-    "title": "test product",
+    "title": "Productos Agregados",
     "price": 34.5,
-    "thumbnail": "thumbnail.jpg",
+    "thumbnail": "Aqui Va una imagen del producto",
     "id": 1
   },
   {
-    "title": "test product",
+    "title": "Productos Agregados",
     "price": 34.5,
-    "thumbnail": "thumbnail.jpg",
+    "thumbnail": "Aqui Va una imagen del producto",
     "id": 2
-  },
-  {
-    "title": "test product",
-    "price": 34.5,
-    "thumbnail": "thumbnail.jpg",
-    "id": 3
-  },
-  {
-    "title": "test product",
-    "price": 34.5,
-    "thumbnail": "thumbnail.jpg",
-    "id": 4
-  },
-  {
-    "title": "test product",
-    "price": 34.5,
-    "thumbnail": "thumbnail.jpg",
-    "id": 5
-  },
-  {
-    "title": "test product",
-    "price": 34.5,
-    "thumbnail": "thumbnail.jpg",
-    "id": 6
   }
 ]
