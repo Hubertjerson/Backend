@@ -5,6 +5,8 @@ module.exports = class Container {
         this.name = name
     }
 
+    //GUARDANDO UN OBJETO
+
     async save(object) {
         try {
             const data = await fs.promises.readFile(`./${this.name}`, 'utf-8')
@@ -25,6 +27,9 @@ module.exports = class Container {
             console.log('archivo creado, vuelve a intentar\n')
         }
     }
+
+    //DEVUELVE UN ID SI USUARIO SELECCIONA LA OPCION
+
     async getById(id) {
         try{
             const data = fs.readFileSync(`${this.name}`)
@@ -34,6 +39,9 @@ module.exports = class Container {
             console.log(err)
         }
     }
+
+    //DEVUELVE UN ARRAY CON LOS OBJETOS PRESENTES EN EL ARCHIVO
+
     async getAll() {
         try {
             const data = fs.readFileSync(`./${this.name}`, 'utf-8')
@@ -43,6 +51,9 @@ module.exports = class Container {
             return`[No hay ningun producto] ${err}`
         }
     }
+
+    // ELIMINA UN ID DEL ARCHIVO OBJETOS
+
     deleteById(id) {
         try{
             const data = fs.readFileSync(`${this.name}`)
@@ -54,6 +65,9 @@ module.exports = class Container {
             console.log(err)
         }
     }
+
+    //ELIMINA TODOS LOS OBJETOS GUARDANDADOS EN EL ARCHIVO
+
     async deleteAll() {
         try {
             await fs.promises.unlink(`./${this.name}`)
