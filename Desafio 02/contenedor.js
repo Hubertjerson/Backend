@@ -31,7 +31,7 @@ class Contenedor {
             const data = await this.getData();
             const parsedData = JSON.parse(data);
 
-            return parsedData.find((producto) => producto.id === id);
+            return parsedData.find((producto) => producto.id === id) || null;
         } catch (error) {
             console.log(
                 `Error Code: ${error.code} | Hubo un error al intentar obtener un elemento por su ID (${id})`
@@ -53,7 +53,6 @@ class Contenedor {
                 await fs.promises.writeFile(this._filename, JSON.stringify(parsedData));
             } else {
                 console.log(`ID ${id} no existe en el archivo`);
-                return null;
             }
         } catch (error) {
             console.log(
