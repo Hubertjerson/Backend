@@ -5,42 +5,30 @@ const productos = require('../api/productos')
 
 router.get('/productos/listar', (req, res) => {
 
-    const items = productos.listar
-    if (items.length > 0) {
-        res.json(items)
-    } else {
-        res.json({
-            error: 'No hay productos cargados'
-        })
-    }
+    res.status(200).json(productos.listarProducto)
 })
 
 router.get('/productos/listar/:id', (req, res) => {
 
-    const item = productos.listarId(req.params.id)
-
-    if (item) {
-        res.json(item)
-    } else {
-        res.json({
-            error: 'Producto no encontrado'
-        })
-    }
+    let id = req.params.id
+    res.status(200).json(productos.mostrarProducto(id))
 })
 
 router.post('/productos/guardar', (req, res) => {
-    const newItem = productos.agregar(req.body)
-    res.json(newItem)
+    let toAdd = req.body
+    let prod = productos.nuevoProducto(toAdd)
+    res.status(201).json(prod)
 })
 
 router.put('/productos/actualizar/:id', (req, res) => {
-    const item = productos.actualizar(req.body, req.params.id)
-    res.json(item)
+    let toChange = req.body
+    let id = req.params.id
+    res.status(200).json(productos.actualizarProducto(toChange, id))
 })
 
 router.delete('/productos/borrar/:id', (req, res) => {
-    const item = productos.borrar(req.params.id)
-    res.json(item)
+    let id = req.params.id
+    res.status(200).json(productos.eliminarProducto(id))
 })
 
 

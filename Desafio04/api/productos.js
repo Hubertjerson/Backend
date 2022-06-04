@@ -1,49 +1,56 @@
-class Productos {
+class Producto {
+    productos = []
+    id = 0
 
-    constructor() {
-        this.items = []
+    nuevoProducto(producto) {
+        this.productos.push({
+            title: producto.title,
+            price: producto.price,
+            thumbnail: producto.thumbnail,
+            id: ++this.id
+        })
+
+        return this.productos[this.id - 1]
     }
 
-    get listar() {
-        return this.items
-    }
-
-    agregar(producto) {
-        const newItem = {
-            id: this.items.length + 1,
-            ...producto
+    mostrarProducto(id) {
+        let prod = this.productos.find((producto) => {
+            return producto.id == id
+        })
+        if (prod == undefined) {
+            return '{error: "Producto no encontrado."}'
         }
-        this.items.push(newItem)
 
-        return newItem
+        return prod
     }
 
-    listarId(id) {
-        return this.items.find(prod => prod.id === Number(id))
-    }
-
-    borrar(id) {
-        if (this.items.length == 0) { return { error: "No hay items cargados." } }
-        const item = this.items.find(prod => prod.id === Number(id)) || { error: "Producto no encontrado" }
-        this.items = this.items.filter(el => el.id !== Number(id))
-        return item
-    }
-
-    actualizar(prod, id) {
-        if (this.items.length == 0) { return { error: "No hay items cargados." } }
-        const { title, price, thumbnail } = prod
-        const item = this.items.find(prod => prod.id === Number(id))
-        if (item) {
-            item.title = title
-            item.price = price
-            item.thumbnail = thumbnail
-            return item
-        } else {
-            return { error: "Producto no encontrado" }
+    get listarProducto() {
+        if (this.productos.length == 0) {
+            return '{error: "No hay productos cargados."}'
         }
+
+        return this.productos
     }
 
+    actualizarProducto(cambios, id) {
+        let indiceProd = this.productos.findIndex((prod) => {
+            return prod.id == id
+        })
+        let prodActualizado = { ...cambios, id: id }
+        return (this.productos[indiceProd] = prodActualizado)
+    }
+
+    eliminarProducto(id) {
+        let indiceProd = this.productos.findIndex((prod) => {
+            if (prod.id == id) {
+                return prod
+            }
+        })
+        if (indiceProd == -1) {
+            return '{error: "Producto no encontrado."}'
+        }
+        return this.productos.splice(indiceProd, 1)[0]
+    }
 }
 
-
-module.exports = new Productos()
+module.exports = new Producto()
