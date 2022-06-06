@@ -5,28 +5,42 @@ const productos = require('../api/productos')
 
 router.get('/productos/listar', (req, res) => {
 
-    res.json(productos.listarProducto)
+    const items = productos.listar
+    if (items.length > 0) {
+        res.json(items)
+    } else {
+        res.json({
+            error: 'No hay productos cargados'
+        })
+    }
 })
 
 router.get('/productos/listar/:id', (req, res) => {
 
-    const id = productos.mostrarProducto(req.params.id)
-    res.json(id)
+    const item = productos.listarId(req.params.id)
+
+    if (item) {
+        res.json(item)
+    } else {
+        res.json({
+            error: 'Producto no encontrado'
+        })
+    }
 })
 
 router.post('/productos/guardar', (req, res) => {
-    const toAdd = productos.nuevoProducto(req.body)
-    res.json(toAdd)
+    const newItem = productos.agregar(req.body)
+    res.json(newItem)
 })
 
 router.put('/productos/actualizar/:id', (req, res) => {
-    const toChange =productos.actualizarProducto(req.body, req.params.id)
-    res.json(toChange)
+    const item = productos.actualizar(req.body, req.params.id)
+    res.json(item)
 })
 
 router.delete('/productos/borrar/:id', (req, res) => {
-    const id = productos.eliminarProducto(req.params.id)
-    res.json(id)
+    const item = productos.borrar(req.params.id)
+    res.json(item)
 })
 
 
