@@ -5,12 +5,13 @@ class Productos {
     }
 
     get listar() {
+        if (this.items.length == 0) {return { error: "No hay items cargados." } }
         return this.items
     }
 
     agregar(producto) {
         const newItem = {
-            id: this.items[this.items.length - 1].id + 1,
+            id: this.items.length ? this.items[this.items.length - 1].id + 1 : 1,
             ...producto
         }
         this.items.push(newItem)

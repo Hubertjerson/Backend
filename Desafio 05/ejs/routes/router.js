@@ -9,28 +9,12 @@ router.get('/productos/vista', (req, res) => {
 })
 
 router.get('/productos/listar', (req, res) => {
-
-    const items = productos.listar
-    if (items.length > 0) {
-        res.json(items)
-    } else {
-        res.json({
-            error: 'No hay productos cargados'
-        })
-    }
+    res.json(productos.listar)
 })
 
 router.get('/productos/listar/:id', (req, res) => {
-
     const item = productos.listarId(req.params.id)
-
-    if (item) {
-        res.json(item)
-    } else {
-        res.json({
-            error: 'Producto no encontrado'
-        })
-    }
+    res.json(item ? item : { error: "Producto no encontrado" })
 })
 
 router.post('/productos/guardar', (req, res) => {
