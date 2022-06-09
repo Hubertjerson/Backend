@@ -5,7 +5,7 @@ const productos = require('../api/productos')
 
 router.get('/productos/vista', (req, res) => {
     const items = productos.listar
-    res.render('index', { hayProductos: items })
+    res.render('main', { hayProductos: items })
 })
 
 router.get('/productos/listar', (req, res) => {
