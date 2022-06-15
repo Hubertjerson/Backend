@@ -1,4 +1,4 @@
-const template = Handlebars.compile(`
+let template = Handlebars.compile(`
         <h1>Vista de Productos</h1>
             <br>
             {{#if hayProductos}} 
@@ -16,15 +16,12 @@ const template = Handlebars.compile(`
         <a href="/" class="btn btn-info m-3">Volver</a>
 `)
 
-
-const socket = io();
-
 const inputtitle = document.getElementById("title");
 const inputprice = document.getElementById("price");
 const inputthumbnail = document.getElementById("thumbnail");
 const button = document.getElementById("button");
 
-button.addEventListener("click", () => {
+button.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const title = inputtitle.value;
@@ -45,7 +42,7 @@ button.addEventListener("click", () => {
 })
 
 socket.on('actualizar_producto', data => {
-    let html = template({
+    const html = template({
         hayProductos: data,
     })
     document.getElementById("lista-productos").innerHTML = html;
