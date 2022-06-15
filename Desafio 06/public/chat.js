@@ -1,4 +1,4 @@
-const socket = io();
+
 const nameInput = document.getElementById("nombre");
 const messageInput = document.getElementById("mensaje");
 
