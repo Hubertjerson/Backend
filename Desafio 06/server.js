@@ -5,6 +5,8 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 const PORT = 8080;
 
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -12,6 +14,7 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
+
 
 
 let chat = [];
@@ -25,7 +28,7 @@ io.on('connection', channel => {
     actualizar_producto();
 
     channel.on('guardar', data => {
-        productos.push(data)
+        productos.push(data);
         actualizar_producto();
     })
 
@@ -41,7 +44,7 @@ io.on('connection', channel => {
 
 const emitir = () => io.sockets.emit('chat', chat);
 //const sendUsers = () => io.sockets.emit('usersList', users);
-const actualizar_producto = () => io.sockets.emit('actualizar_producto', productos);
+const actualizar_producto = () => io.sockets.emit('productos', productos);
 
 server.listen(PORT, () => {
     console.log(`Server running on PORT: ${PORT}`);
