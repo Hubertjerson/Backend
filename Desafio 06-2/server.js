@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
     res.sendFile('index', { root: '__dirname' });
 });
 
+app.post('/guardar', (req, res) => {
+    productos.agregar(req.body);
+    res.redirect('/');
+});
 
 let chat = [];
 //let users = [];
@@ -24,11 +28,12 @@ io.on('connection', channel => {
 
     emitir();
     //sendUsers();
-    socket.emit('actualizar-productos', productos.listar);
+    productosActualizar();
 
     channel.on('guardar', data => {
+        console.log(data)
         productos.agregar(data)
-        io.sockets.emit('actualizar-productos', productos.listar);
+        productosActualizar
     })
 
     channel.on('incomingMessage', message => {
@@ -43,7 +48,7 @@ io.on('connection', channel => {
 
 const emitir = () => io.sockets.emit('chat', chat);
 //const sendUsers = () => io.sockets.emit('usersList', users);
-
+const productosActualizar = () => io.sockets.emit('actualizar-productos', productos.listar);
 
 server.listen(PORT, () => {
     console.log(`Server running on PORT: ${PORT}`);

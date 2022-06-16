@@ -4,7 +4,7 @@ class Productos {
         this.items = []
     }
 
-    listar() {
+    get listar() {
         if (this.items.length == 0) {return { error: "No hay items cargados." } }
         return this.items
     }

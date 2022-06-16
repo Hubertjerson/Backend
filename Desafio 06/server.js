@@ -28,8 +28,9 @@ io.on('connection', channel => {
     actualizar_producto();
 
     channel.on('guardar', data => {
+        console.log(data);
         productos.push(data);
-        actualizar_producto();
+        actualizar_producto(data);
     })
 
     channel.on('incomingMessage', message => {
