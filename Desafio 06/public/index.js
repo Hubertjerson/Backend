@@ -1,7 +1,7 @@
 const socket = io();
 const inputtitle = document.getElementById("title");
 const inputprice = document.getElementById("price");
-const inputthumbnail = document.getElementById("thumbnail");
+//const inputthumbnail = document.getElementById("thumbnail");
 
 
 
@@ -12,11 +12,11 @@ function sendProduct() {
 
     inputtitle.disabled = true;
     inputprice.disabled = true;
-    inputthumbnail.disabled = true;
+    //inputthumbnail.disabled = true;
     const product = {
         title: inputtitle.value,
         price: inputprice.value,
-        thumbnail: inputthumbnail.value
+        //thumbnail: inputthumbnail.value
     }
     socket.emit("guardar", product);
 }
@@ -31,12 +31,12 @@ socket.on('productos', data => {
                         <tr>
                             <th>Nombre</th>
                             <th>Precio</th>
-                            <th>Foto</th>
+                            <!--<th>Foto</th>-->
                         </tr>
                         <tr>
                             <td>${data.title}</td>
                             <td>${data.price}</td>
-                            <td style="width: 50px">${data.thumbnail}</td>
+                            <!--<td style="width: 50px">${data.thumbnail}</td>-->
                         </tr>
                     </table>
                 </div>`)
