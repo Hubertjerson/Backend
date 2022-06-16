@@ -29,6 +29,7 @@ const inputprice = document.getElementById("price");
 const inputthumbnail = document.getElementById("thumbnail");
 
 
+
 function sendProduct() {
     if(!inputtitle.value || !inputprice.value ||! inputthumbnail.value)  {
         return alert("Debe ingresar todos los campos");
@@ -42,13 +43,8 @@ function sendProduct() {
         thumbnail: inputthumbnail.value
     }
     socket.emit("guardar", product);
-    inputtitle.value = "";
-    inputtitle.focus();
-    inputprice.value = "";
-    inputprice.focus();
-    inputthumbnail.value = "";
-    inputthumbnail.focus();
-
+    productInput.value = "";
+    productInput.focus();
 }
 socket.on('productos', data => {
     const html = template({

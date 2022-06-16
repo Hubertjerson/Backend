@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
     res.sendFile('index', { root: '__dirname' });
 });
 
+
 let chat = [];
 //let users = [];
 
