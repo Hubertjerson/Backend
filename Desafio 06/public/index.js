@@ -6,7 +6,7 @@ const inputprice = document.getElementById("price");
 
 
 function sendProduct() {
-    if (!inputtitle.value) {
+    if (!inputtitle.value && !inputprice.value) {
         return alert("Debe ingresar todos los campos");
     }
 
