@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": "Mon Jun 20 2022",
+    "nombre": "Producto3",
+    "descripcion": "descripcion15",
+    "codigo": 1,
+    "thumbnail": "url15",
+    "precio": 100,
+    "stock": 100,
+    "id": 1
+  },
+  {
+    "timestamp": "Mon Jun 20 2022",
+    "nombre": "Producto3",
+    "descripcion": "descripcion15",
+    "codigo": 1,
+    "thumbnail": "url15",
+    "precio": 100,
+    "stock": 100,
+    "id": 2
+  },
+  {
+    "timestamp": "Mon Jun 20 2022",
+    "nombre": "Producto3",
+    "descripcion": "descripcion15",
+    "codigo": 1,
+    "thumbnail": "url15",
+    "precio": 100,
+    "stock": 100,
+    "id": 3
+  },
+  {
+    "timestamp": "Mon Jun 20 2022",
+    "nombre": "Producto3",
+    "descripcion": "descripcion15",
+    "codigo": 1,
+    "thumbnail": "url15",
+    "precio": 100,
+    "stock": 100,
+    "id": 4
+  },
+  {
+    "timestamp": "Mon Jun 20 2022",
+    "nombre": "Producto3",
+    "descripcion": "descripcion15",
+    "codigo": 1,
+    "thumbnail": "url15",
+    "precio": 100,
+    "stock": 100,
+    "id": 5
+  },
+  {
+    "timestamp": "Mon Jun 20 2022",
+    "nombre": "Producto3",
+    "descripcion": "descripcion15",
+    "codigo": 1,
+    "thumbnail": "url15",
+    "precio": 100,
+    "stock": 100,
+    "id": 6
+  }
+]
