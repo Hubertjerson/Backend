@@ -18,6 +18,9 @@ function sendProduct() {
         price: inputprice.value,
         //thumbnail: inputthumbnail.value
     }
+    inputtitle.value = "";
+    inputprice.value = "";
+    //inputthumbnail.value = "";
     socket.emit("guardar", product);
 }
 socket.on('productos', data => {
@@ -36,7 +39,7 @@ socket.on('productos', data => {
                         <tr>
                             <td>${data.title}</td>
                             <td>${data.price}</td>
-                            <!--<td style="width: 50px">${data.thumbnail}</td>-->
+                            <!--<td style="width: 50px"><img src="${data.thumbnail}" width="60" height="60"></td>-->
                         </tr>
                     </table>
                 </div>`)
