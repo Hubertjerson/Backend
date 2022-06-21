@@ -13,12 +13,12 @@
 <body>
     <div class="container mt-3 jumbotron">
         <h2 style="color: blue">Ingrese Producto</h2>
-        <form id="formulario">
+        <form id="formulario" onsubmit="return sendProduct()">
             <div class="form-group">
                 Nombre: <input id="title" class="form-control" type="text" name="title">
                 Precio: <input id="price" class="form-control" type="number" name="price">
                 <!--Foto URL: <input id="img" class="form-control" type="text" name="thumbnail">-->
-                <input type="submit" class="btn btn-success mt-3" onsubmit="return sendProduct()">
+                <input type="submit" class="btn btn-success mt-3">
             </div>
         </form>
     </div>
@@ -33,10 +33,10 @@
         <br>
         <div id="messages"></div>
 
-        <form class="form-inline mt-3">
+        <form class="form-inline mt-3" onsubmit="return sendMessage()">
             <input type="text" id="nombre" placeholder="Nombre" class="form-control w-50 my-2 mr-2">
             <input type="text" id="mensaje" placeholder="Atr..." class="form-control my-2 mr-2">
-            <input type="submit" onsubmit="return sendMessage()" class="btn btn-primary my-2">
+            <input type="submit" class="btn btn-primary my-2">
         </form>
 
     </div>

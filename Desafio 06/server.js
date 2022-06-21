@@ -26,10 +26,11 @@ io.on('connection', channel => {
     channel.on('guardar', data => {
         console.log(data);
         productos.push(data);
-        actualizar_producto();
+        actualizar_producto(false);
     })
 
     channel.on('incomingMessage', message => {
+        console.log(message);
         //users.indexOf(message.nombre) === -1 ? null : channel.emit("changeName");
         chat.push(message);
         //users.push(message.nombre);
