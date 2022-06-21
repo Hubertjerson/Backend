@@ -18,7 +18,7 @@
                 Nombre: <input id="title" class="form-control" type="text" name="title">
                 Precio: <input id="price" class="form-control" type="number" name="price">
                 <!--Foto URL: <input id="img" class="form-control" type="text" name="thumbnail">-->
-                <button class="btn btn-success mt-3" onclick="sendProduct()">Enviar</button>
+                <input type="submit" class="btn btn-success mt-3" onsubmit="return sendProduct()">
             </div>
         </form>
     </div>
@@ -36,7 +36,7 @@
         <form class="form-inline mt-3">
             <input type="text" id="nombre" placeholder="Nombre" class="form-control w-50 my-2 mr-2">
             <input type="text" id="mensaje" placeholder="Atr..." class="form-control my-2 mr-2">
-            <button type="submit" onclick="sendMessage()" class="btn btn-primary my-2">Enviar</button>
+            <input type="submit" onsubmit="return sendMessage()" class="btn btn-primary my-2">
         </form>
 
     </div>

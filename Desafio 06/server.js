@@ -19,9 +19,9 @@ let productos = [];
 
 io.on('connection', channel => {
 
-    emitir();
+    //emitir();
     //sendUsers();
-    actualizar_producto();
+    //actualizar_producto();
 
     channel.on('guardar', data => {
         console.log(data);

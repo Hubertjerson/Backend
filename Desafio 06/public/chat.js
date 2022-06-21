@@ -16,6 +16,7 @@ function sendMessage() {
 
     socket.emit("incomingMessage", message);
     messageInput.value = "";
+    messageInput.focus();
 }
 
 socket.on('chat', message => {
