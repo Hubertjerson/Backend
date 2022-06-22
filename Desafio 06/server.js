@@ -22,16 +22,18 @@ io.on('connection', channel => {
     //emitir();
     //sendUsers();
     //actualizar_producto();
+    channel.emit('productos',productos);
+    channel.emit('chat',chat);
 
     channel.on('guardar', data => {
         console.log(data);
         productos.push(data);
-        actualizar_producto(false);
+        actualizar_producto();
     })
 
     channel.on('incomingMessage', message => {
         console.log(message);
-        //users.indexOf(message.nombre) === -1 ? null : channel.emit("changeName");
+        //chat.indexOf(message) === -1 ? null : channel.emit("changeName");
         chat.push(message);
         //users.push(message.nombre);
         emitir();

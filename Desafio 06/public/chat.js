@@ -9,11 +9,10 @@ function sendMessage() {
     }
 
     nameInput.disabled = true;
-    const message = {
+        const message = {
         nombre: nameInput.value,
         text: messageInput.value
     };
-
     socket.emit("incomingMessage", message);
     messageInput.value = "";
     messageInput.focus();
