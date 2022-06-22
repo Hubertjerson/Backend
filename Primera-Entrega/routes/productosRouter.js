@@ -1,7 +1,7 @@
 const express = require('express')
 const productosRouter = express.Router();
 const productos = require('../controller/producto');
-let myProductos = new productos('./controller/productos.txt');
+let myProductos = new productos('./data/productos.txt');
 
 productosRouter.get('/', async (req, res) => {
     try {

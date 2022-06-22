@@ -3,15 +3,15 @@ const carritoRouter = express.Router();
 const carrito = require('../controller/carrito');
 const productos = require('../controller/producto');
 
-let myCarrito = new carrito('./controller/carrito.txt');
-let myProductos = new productos('./controller/productos.txt');
+let myCarrito = new carrito('./data/carrito.txt');
+let myProductos = new productos('./data/productos.txt');
 
 carritoRouter.get('/:id/productos', async (req, res) => {
     try {
         let idCart = req.params.id;
         let productsId = await myCarrito.productoId(idCart);
-        if (productsId.length == 0) {
-            return res.json({ error: `No existe el carrito con el id ${idCart}` });
+        if (productsId.length < 0) {
+            return res.json({ error: `No existe el carrito con id ${idCart}` });
         } else {
             return res.json(productsId);
         }
@@ -20,16 +20,16 @@ carritoRouter.get('/:id/productos', async (req, res) => {
     }
 });
 
-carritoRouter.post('/', async (req, res) => { 
-    try{
+carritoRouter.post('/', async (req, res) => {
+    try {
         const id = await myCarrito.guardarCarrito();
         return res.json(`El id Asignado del carrito es : ${id}`);
-    }catch (error) {
+    } catch (error) {
         return res.json({ error: `Error ${error}` });
     }
 });
 carritoRouter.post('/:idCar/:idProd', async (req, res) => {
-    try{
+    try {
         let idCart = Number(req.params.idCar);
         let idProduct = req.params.idProd;
 
@@ -42,37 +42,37 @@ carritoRouter.post('/:idCar/:idProd', async (req, res) => {
         }
 
         let cart = await myCarrito.carritoId(idCart);
-        if(cart.length == 0){
+        if (cart.length == 0) {
             return res.json({ error: `Error no se encontro el carrito con el id ${idCart}` });
         }
         let productId = await myProductos.listarId(idProduct);
-        if(productId.length == 0){
+        if (productId.length == 0) {
             return res.json({ error: `Error no se encontro el producto con el id ${idProduct}` });
         }
 
         allCarts[cartIndex].products.push(productId[0]);
-        await myCarrito.write(allCarts,`Producto agregado al carrito`);
+        await myCarrito.write(allCarts, `Producto agregado al carrito`);
         return res.json(`Producto agregado con id ${idProduct} al carrito con id ${idCart}`);
-    }catch (error) {
+    } catch (error) {
         return res.json({ error: `Error ${error}` });
     }
 });
 carritoRouter.delete('/:id', async (req, res) => {
-    try{
-        let idCart = Number(req.params.id);
+    try {
+        const idCart = Number(req.params.id);
         await myCarrito.borrarCarrito(idCart);
         return res.json(`Carrito con id ${idCart} eliminado`);
-    }catch (error) {
+    } catch (error) {
         return res.json({ error: `Error ${error}` });
     }
- });
+});
 carritoRouter.delete('/:id/productos/:idProd', async (req, res) => {
-    try{
-        let idCart = Number(req.params.id);
-        let idProduct = req.params.idProd;
-        await myCarrito.eliminarProducto(idCart,idProduct);
+    try {
+        const idCart = Number(req.params.id);
+        const idProduct = Number(req.params.idProd);
+        await myCarrito.eliminarProducto(idCart, idProduct);
         return res.json(`Producto con id ${idProduct} eliminado del carrito con id ${idCart}`);
-    }catch (error) {
+    } catch (error) {
         return res.json({ error: `Error ${error}` });
     }
 });
