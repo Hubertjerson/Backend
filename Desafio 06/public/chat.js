@@ -43,7 +43,7 @@ socket.on('chat', message => {
 //    document.getElementById("users-list").innerHTML = liUses;
 //});
 
-//socket.on('changeName', () => {
+//socket.on('chat', () => {
 //    nameInput.disabled = false;
 //    return alert("Nombre ya utilizado");
 //})
