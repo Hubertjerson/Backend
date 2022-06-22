@@ -6,6 +6,9 @@ const productos = require('../controller/producto');
 let myCarrito = new carrito('./data/carrito.txt');
 let myProductos = new productos('./data/productos.txt');
 
+/* ------------------------ CarritoRouter ------------------------- */
+
+// GET api/carrito/:id/productos
 carritoRouter.get('/:id/productos', async (req, res) => {
     try {
         let idCart = req.params.id;
@@ -20,6 +23,7 @@ carritoRouter.get('/:id/productos', async (req, res) => {
     }
 });
 
+// POST /api/carrito
 carritoRouter.post('/', async (req, res) => {
     try {
         const id = await myCarrito.guardarCarrito();
@@ -28,6 +32,8 @@ carritoRouter.post('/', async (req, res) => {
         return res.json({ error: `Error ${error}` });
     }
 });
+
+// POST /api/carrito/:idCar/:idProd
 carritoRouter.post('/:idCar/:idProd', async (req, res) => {
     try {
         let idCart = Number(req.params.idCar);
@@ -57,6 +63,8 @@ carritoRouter.post('/:idCar/:idProd', async (req, res) => {
         return res.json({ error: `Error ${error}` });
     }
 });
+
+// DELETE /api/carrito/id
 carritoRouter.delete('/:id', async (req, res) => {
     try {
         const idCart = Number(req.params.id);
@@ -66,6 +74,8 @@ carritoRouter.delete('/:id', async (req, res) => {
         return res.json({ error: `Error ${error}` });
     }
 });
+
+// DELETE /api/carrito/:id/productos/:idProd
 carritoRouter.delete('/:id/productos/:idProd', async (req, res) => {
     try {
         const idCart = Number(req.params.id);

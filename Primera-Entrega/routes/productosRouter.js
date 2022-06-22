@@ -3,6 +3,9 @@ const productosRouter = express.Router();
 const productos = require('../controller/producto');
 let myProductos = new productos('./data/productos.txt');
 
+/* ------------------------ ProductosRouter ------------------------- */
+
+// GET api/productos
 productosRouter.get('/', async (req, res) => {
     try {
         let allProducts = await myProductos.listar();
@@ -12,6 +15,7 @@ productosRouter.get('/', async (req, res) => {
     }
 });
 
+// GET api/productos/:id
 productosRouter.get('/:id', async (req, res) => {
     try {
         let productbyId = await myProductos.listarId(req.params.id);
@@ -26,6 +30,8 @@ productosRouter.get('/:id', async (req, res) => {
         return res.json({ error: `Error ${error}` });
     }
 });
+
+// POST api/productos
 productosRouter.post('/', async (req, res) => {
     try {
         const name = req.body.nombre;
@@ -51,6 +57,8 @@ productosRouter.post('/', async (req, res) => {
         return res.json({ error: `Error ${error}` });
     }
 });
+
+// PUT api/productos/:id
 productosRouter.put('/:id', async (req, res) => {
     try {
         const id = Number(req.params.id);
@@ -82,6 +90,8 @@ productosRouter.put('/:id', async (req, res) => {
         return res.json({ error: `Error ${error}` });
     }
 });
+
+// DELETE /api/productos/:id
 productosRouter.delete('/:id', async (req, res) => {
     try {
         const id = Number(req.params.id);

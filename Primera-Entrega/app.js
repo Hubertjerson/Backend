@@ -12,6 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/productos', productosRouter);
 app.use('/api/carrito', carritoRouter);
 
+// api/productos/adsad
+// api/carrito/adsad
 app.use((req, res) => {
     res.json({ error:-2, descripcion: 'ruta X método Y no autorizada'});
 });
