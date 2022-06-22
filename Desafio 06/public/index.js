@@ -22,6 +22,7 @@ function sendProduct() {
     inputprice.value = "";
     //inputthumbnail.value = "";
     socket.emit("guardar", product);
+    return false;
 }
 socket.on('productos', data => {
     console.log(data);
