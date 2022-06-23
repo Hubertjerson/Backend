@@ -1,22 +1,17 @@
-const express = require('express')
-const productosRouter = express.Router();
-const productos = require('../controller/producto');
+const uuid = require('uuid');
+const productos = require('../lib/producto');
 let myProductos = new productos('./data/productos.txt');
 
-/* ------------------------ ProductosRouter ------------------------- */
-
-// GET api/productos
-productosRouter.get('/', async (req, res) => {
+const getAllProducts = async (req, res) => {
     try {
         let allProducts = await myProductos.listar();
         return res.json(allProducts);
     } catch (error) {
         return res.json({ error: `Error ${error}` });
     }
-});
+}
 
-// GET api/productos/:id
-productosRouter.get('/:id', async (req, res) => {
+const getProductById = async (req, res) => {
     try {
         let productbyId = await myProductos.listarId(req.params.id);
         if (productbyId.length == 0) {
@@ -29,17 +24,16 @@ productosRouter.get('/:id', async (req, res) => {
     } catch (error) {
         return res.json({ error: `Error ${error}` });
     }
-});
+}
 
-// POST api/productos
-productosRouter.post('/', async (req, res) => {
+const addProduct = async (req, res) => {
     try {
         const name = req.body.nombre;
         const price = Number(req.body.precio);
         const url = req.body.thumbnail;
         const description = req.body.descripcion;
         const date = new Date().toDateString();
-        const code = Number(req.body.codigo);
+        const code = uuid.v4();
         const stock = Number(req.body.stock);
 
         const newProducto = {
@@ -56,10 +50,9 @@ productosRouter.post('/', async (req, res) => {
     } catch (error) {
         return res.json({ error: `Error ${error}` });
     }
-});
+}
 
-// PUT api/productos/:id
-productosRouter.put('/:id', async (req, res) => {
+const updateProductById = async (req, res) => {
     try {
         const id = Number(req.params.id);
         const name = req.body.nombre;
@@ -76,23 +69,22 @@ productosRouter.put('/:id', async (req, res) => {
         if (productIndex < 0) {
             return res.json({ error: `Producto no encontrado` });
         }
-        allProducts[productIndex].nombre = name;
-        allProducts[productIndex].thumbnail = url;
+        allProducts[productIndex].nombre = name || allProducts.nombre;
+        allProducts[productIndex].thumbnail = url || allProducts.thumbnail;
         allProducts[productIndex].timestamp = date;
-        allProducts[productIndex].descripcion = description;
+        allProducts[productIndex].descripcion = description || allProducts.descripcion;
         allProducts[productIndex].codigo = code;
-        allProducts[productIndex].precio = price;
-        allProducts[productIndex].stock = stock;
+        allProducts[productIndex].precio = price || allProducts.precio;
+        allProducts[productIndex].stock = stock || allProducts.stock;
 
         await myProductos.write(allProducts);
         return res.json(`Producto ${id} actualizado`);
     } catch (error) {
         return res.json({ error: `Error ${error}` });
     }
-});
+}
 
-// DELETE /api/productos/:id
-productosRouter.delete('/:id', async (req, res) => {
+const deleteProductById = async (req, res) => {
     try {
         const id = Number(req.params.id);
         await myProductos.borrarId(id);
@@ -100,6 +92,12 @@ productosRouter.delete('/:id', async (req, res) => {
     } catch (error) {
         return res.json({ error: `Error ${error}` });
     }
-});
+}
 
-module.exports = productosRouter;
+module.exports={
+    getAllProducts,
+    getProductById,
+    addProduct,
+    updateProductById,
+    deleteProductById,
+}

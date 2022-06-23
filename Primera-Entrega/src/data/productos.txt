@@ -30,13 +30,11 @@
     "id": 3
   },
   {
-    "timestamp": "Wed Jun 22 2022",
-    "nombre": "Producto4",
-    "descripcion": "descripcion4",
-    "codigo": 4,
-    "thumbnail": "url4",
-    "precio": 10,
-    "stock": 4,
+    "timestamp": "Thu Jun 23 2022",
+    "nombre": "Producto9",
+    "descripcion": "descripcion9",
+    "codigo": null,
+    "stock": 100,
     "id": 4
   },
   {
@@ -68,5 +66,15 @@
     "precio": 100,
     "stock": 100,
     "id": 7
+  },
+  {
+    "timestamp": "Thu Jun 23 2022",
+    "nombre": "Producto9",
+    "descripcion": "descripcion4",
+    "codigo": "207fa32b-a45b-4656-adef-8eae8f7379e6",
+    "thumbnail": "url4",
+    "precio": 10,
+    "stock": 4,
+    "id": 8
   }
 ]

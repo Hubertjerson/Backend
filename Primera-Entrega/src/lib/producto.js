@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-class ConenedorProductos {
+class ContenedorProductos {
     constructor(archivo) {
         this.archivo = archivo;
     }
@@ -79,4 +79,4 @@ class ConenedorProductos {
         await this.write(data, `Productos Borrados`);
     }
 };
-module.exports = ConenedorProductos;
+module.exports = ContenedorProductos;
