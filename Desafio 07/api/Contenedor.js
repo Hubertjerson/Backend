@@ -1,5 +1,5 @@
 const { optionsMySQL } = require('../config/mysql');
-
+const { optionsSQLite3 } = require('../config/sqlite');
 
 class Contenedor {
 
@@ -13,8 +13,9 @@ class Contenedor {
 }
 
 const mySQLContenedor = new Contenedor(optionsMySQL);
-
+const SQLite3Contenedor = new Contenedor(optionsSQLite3);
 
 module.exports = {
     mySQLContenedor,
+    SQLite3Contenedor,
 };

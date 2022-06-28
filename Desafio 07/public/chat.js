@@ -1,50 +1,58 @@
 
 const nameInput = document.getElementById("nombre");
 const messageInput = document.getElementById("mensaje");
+const sendMessage = document.getElementById('sendMessage');
+const tbodymessages = document.getElementById('messages');
 
-function sendMessage() {
 
-    if (!nameInput.value) {
-        return alert("debe ingresar un nombre");
+socket.emit(`incommingMessage`);
+
+sendMessage.addEventListener('click', () => {
+    const message = {
+        nombre: nameInput.value,
+        text: messageInput.value,
     }
 
-    nameInput.disabled = true;
-        const message = {
-        nombre: nameInput.value,
-        text: messageInput.value
-    };
-    socket.emit("incomingMessage", message);
+    nameInput.value = "";
     messageInput.value = "";
-    messageInput.focus();
-    return false;
-}
 
-socket.on('chat', message => {
-    const texto = message.map(mensaje => {
-        return (`<div>
-            <strong>${mensaje.nombre}</strong>
-            <em>${mensaje.text}</em>
-            </div>`
-        );
-    }).join(" ");
-
-    document.getElementById("messages").innerHTML = texto;
+    socket.emit('messageInput', message);
 });
 
-//socket.on('usersList', users => {
-//    console.log('usersList: ', users);
-//    const liUses = Object.values(users).map(user => {
-//        return (`
-//            <li class="m-1 border-botton">
-//            <strong> ${user}</strong>
-//            </li>
-//        `)
-//    }).join(" ");
-//
-//    document.getElementById("users-list").innerHTML = liUses;
-//});
+//Servidor --> Cliente: Envio los datos para agregar a la tabla.
+socket.on(`message`, message => {
+    mensajes = `
+        <tr>
+            <th scope="row">
+                ${message[0].id}
+            </th>
+            <td>
+                ${message[0].nombre}
+            </td>
+            <td>
+                ${message[0].text}
+            </td>
+        </tr>
+    `;
+    tbodymessages.innerHTML += mensajes;
+});
 
-//socket.on('chat', () => {
-//    nameInput.disabled = false;
-//    return alert("Nombre ya utilizado");
-//})
+socket.on(`allMessages`, message => {
+
+    message.forEach(mensajes => {
+        product = `
+            <tr>
+                <th scope="row">
+                    ${mensajes.id}
+                </th>
+                <td>
+                    ${mensajes.nombre}
+                </td>
+                <td>
+                    ${mensajes.text}
+                </td>
+            </tr>
+        `;
+        tbodymessages.innerHTML += mensajes;
+    });
+});

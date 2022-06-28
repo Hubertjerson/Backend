@@ -6,7 +6,7 @@ const { SQLite3Contenedor } = require('../../api/Contenedor');
             .createTable(`messages`, table => {
                 table.increments(`id`);
                 table.string(`text`, 500);
-                table.string(`email`, 30);
+                table.string(`nombre`, 30);
             });
         console.log(`Tabla de messages creada`);
     } catch (err) {

@@ -45,6 +45,28 @@ io.on('connection', socket => {
             console.log(`Error: ${err}`)
         }
     })
+
+    socket.on('incommingMessage', async () => {
+        try {
+            const allMessages = await selectAllMessage();
+            socket.emit('allMessages', allMessages);
+        } catch (err) {
+            console.log(`Error: ${err}`)
+        }
+    })
+
+    socket.on('messageInput', async message => {
+        try {
+            const messageDB = {
+                text: `${message.text}`,
+                nombre: `${message.nombre}`,
+            }
+            const chat = await insertMessage(messageDB);
+            socket.emit('message', chat);
+        } catch (err) {
+            console.log(err);
+        }
+    });
 })
 
 
