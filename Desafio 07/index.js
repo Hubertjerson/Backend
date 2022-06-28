@@ -13,9 +13,12 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+/*PRODUCTOS*/
 const { selectAllProducts } = require('./controller/productos/selectAllProducts');
 const { insertProduct } = require('./controller/productos/insertProduct');
-
+/*MENSAJES*/
+const { insertMessage } = require('./controller/mensajes/insertMessage');
+const { selectAllMessage } = require('./controller/mensajes/selectAllMessage');
 
 io.on('connection', socket => {
 
