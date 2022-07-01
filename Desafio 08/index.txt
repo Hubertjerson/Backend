@@ -1,0 +1,184 @@
+use ecommerce;
+1)Agregar 10 documentos con valores distintos a las colecciones mensajes y productos.
+db.productos.insertMany([
+    {
+        "title": "Product 1",
+        "price": 100,
+        "description":"description 1",
+        "image": "url1",
+        "stock": 100
+    },
+    {
+        "title": "Product 2",
+        "price": 320,
+        "description":"description 2",
+        "image": "url2",
+        "stock": 200
+    },
+    {
+        "title": "Product 3",
+        "price": 930,
+        "description":"description 3",
+        "image": "url3",
+        "stock": 300
+    },
+    {
+        "title": "Product 4",
+        "price": 1140,
+        "description":"description 4",
+        "image": "url4",
+        "stock": 400
+    },
+    {
+        "title": "Product 5",
+        "price": 2250,
+        "description":"description 5",
+        "image": "url5",
+        "stock": 500
+    },
+    {
+        "title": "Product 6",
+        "price": 3360,
+        "description":"description 6",
+        "image": "url6",
+        "stock": 600
+    },
+    {
+        "title": "Product 7",
+        "price": 4470,
+        "description":"description 7",
+        "image": "url7",
+        "stock": 700
+    },
+    {
+        "title": "Product 8",
+        "price": 5000,
+        "description":"description 8",
+        "image": "url8",
+        "stock": 800
+    },
+    {
+        "title": "Product 9",
+        "price": 3450,
+        "description":"description 9",
+        "image": "url9",
+        "stock": 900
+    },
+    {
+        "title": "Product 10",
+        "price": 2860,
+        "description":"description 10",
+        "image": "url10",
+        "stock": 1000
+    }
+]);
+
+db.mensajes.insertMany([
+{
+        "text": "mensaje 1",
+        "time": "18:5",
+        "user": "usuario1@gmail.com"
+    },
+    {
+        "text": "mensaje 2",
+        "time": "17:5",
+        "user": "usuario2@gmail.com"
+    },
+    {
+        "text": "mensaje 3",
+        "time": "19:5",
+        "user": "usuario1@gmail.com"
+    },
+    {
+        "text": "mensaje 4",
+        "time": "10:5",
+        "user": "usuario2@gmail.com"
+    },
+    {
+        "text": "mensaje 5",
+        "time": "20:5",
+        "user": "usuario1@gmail.com"
+    },
+    {
+        "text": "mensaje 6",
+        "time": "13:5",
+        "user": "usuario2@gmail.com"
+    },
+    {
+        "text": "mensaje 7",
+        "time": "15:5",
+        "user": "usuario1@gmail.com"
+    },
+    {
+        "text": "mensaje 8",
+        "time": "18:3",
+        "user": "usuario2@gmail.com"
+    },
+    {
+        "text": "mensaje 9",
+        "time": "18:55",
+        "user": "usuario1@gmail.com"
+    },
+    {
+        "text": "mensaje 10",
+        "time": "12:25",
+        "user": "usuario2@gmail.com"
+    },
+])
+
+db.productos.find()
+db.mensajes.find()
+
+2)Definir las claves de los documentos en relación a los campos de las tablas de esa base.
+db.productos.update({ "title": "Product 1" }, { $set: { "price": 150 } });
+db.productos.update({ "title": "Product 2" }, { $set: { "price": 280 } });
+db.productos.update({ "title": "Product 3" }, { $set: { "price": 1350 } });
+db.productos.update({ "title": "Product 4" }, { $set: { "price": 1999 } });
+db.productos.update({ "title": "Product 5" }, { $set: { "price": 2500 } });
+db.productos.update({ "title": "Product 6" }, { $set: { "price": 2700 } });
+db.productos.update({ "title": "Product 7" }, { $set: { "price": 3100 } });
+db.productos.update({ "title": "Product 8" }, { $set: { "price": 4200 } });
+db.productos.update({ "title": "Product 9" }, { $set: { "price": 4900 } });
+db.productos.update({ "title": "Product 10" }, { $set: { "price": 5000 } });
+
+3)Listar todos los documentos en cada colección.
+db.productos.find()
+db.mensajes.find()
+
+4)Mostrar la cantidad de documentos almacenados en cada una de ellas.
+db.productos.count();
+db.mensajes.count();
+
+5)Realizar un CRUD sobre la colección de productos:
+
+a)Agregar un producto más en la colección de productos
+db.productos.insertOne({
+        "title": "Product 11",
+        "price": 3860,
+        "description":"Some description for product 11",
+        "image": "url11",
+        "stock": 1100
+});
+
+b)Realizar una consulta por nombre de producto específico:
+
+-Listar los productos con precio menor a 1000 pesos.
+db.productos.find({ "price": { $lt: 1000 } });
+
+-Listar los productos con precio entre los 1000 a 3000 pesos.
+db.productos.find({ "price": { $gt: 1000, $lt: 3000 } });
+
+-Listar los productos con precio mayor a 3000 pesos.
+db.productos.find({ "price": { $gt: 3000 } });
+
+-Realizar una consulta que traiga sólo el nombre del tercer producto más barato.
+db.productos.find({},{"title":1}).sort({"price":1}).skip(2).limit(1);
+
+c)Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100.
+db.productos.updateMany({}, { $set: { "stock": 100 } });
+
+d)Cambiar el stock a cero de los productos con precios mayores a 4000 pesos.
+db.productos.updateMany({ "price": { $gt: 4000 } }, { $set: { "stock": 0, } });
+
+e)Borrar los productos con precio menor a 1000 pesos
+db.productos.deleteMany({ "price": { $lt: 1000 } });
