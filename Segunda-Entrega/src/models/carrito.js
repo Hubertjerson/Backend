@@ -6,8 +6,8 @@ const carritoSchema = new Schema({
         required: true
     },
     products: {
-        timestamp: { type: Date, required: true },
-        products: { type: Array, required: true },
+        type: Array,
+        required: true
     },
 });
 

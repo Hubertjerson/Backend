@@ -13,6 +13,10 @@ app.use(express.static('public'));
 //Routers
 app.use(`/api/productos`, productosRouter);
 app.use(`/api/carrito`, carritoRouter);
+app.use((req, res) => {
+    res.status(404).json({ error: -2, descripcion: `ruta ${req.originalUrl} metodo ${req.method} no implementada` });
+});
+
 
 const server = app.listen(PORT,() => {
     console.log(`Servidor corriendo en el PORT: ${PORT}`);
