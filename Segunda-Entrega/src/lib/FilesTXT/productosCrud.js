@@ -35,7 +35,7 @@ class Contenedor {
             product.id = newId;
             newProduct = [product];
         } else {
-            product.id = datos[datos.length - 1].id + 1;
+            product.id = datos.length? datos[datos.length - 1].id + 1:1;
             newProduct = product;
         }
         datos.push(newProduct);

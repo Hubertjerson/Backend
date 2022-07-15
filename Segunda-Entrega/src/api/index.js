@@ -5,7 +5,7 @@ const ProductosFiles = require(`../api/Producto/ProductosFiles`);
 const CarritoFiles = require(`../api/Carrito/CarritoFiles`);
 
 const getStorage = () => {
-    const storage = `MongoDB`;
+    const storage = `FilesTXT`;
     switch (storage) {
         case `MongoDB`:
             return {
@@ -13,7 +13,7 @@ const getStorage = () => {
                 carrito: new CarritoMongoDB()
             }
             break
-        case `archivo`:
+        case `FilesTXT`:
             return {
                 productos: new ProductosFiles(),
                 carrito: new CarritoFiles()

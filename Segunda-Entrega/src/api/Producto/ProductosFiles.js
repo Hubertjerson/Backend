@@ -1,5 +1,5 @@
 const fs = require('fs');
-const archivo = require (`../../data/productos.txt`)
+const archivo = require (`../../lib/productos.txt`)
 const CrudArchivo = require(`../../lib/FilesTXT/productosCrud`);
 
 class ProductosDAOArchivo extends CrudArchivo {
