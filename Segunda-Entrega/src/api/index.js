@@ -1,11 +1,11 @@
 const ProductosMongoDB = require(`../api/Producto/productosMongo`);
 const CarritoMongoDB = require(`../api/Carrito/CarritoMongo`);
 
-const ProductosFiles = require(`../api/Producto/ProductosFiles`);
-const CarritoFiles = require(`../api/Carrito/CarritoFiles`);
+const ProductosFirebase = require('../api/Producto/ProductoFirebase');
+const CarritoFirebase = require(`../api/Carrito/CarritoFirebase`);
 
 const getStorage = () => {
-    const storage = `FilesTXT`;
+    const storage = `firebase`;
     switch (storage) {
         case `MongoDB`:
             return {
@@ -13,10 +13,10 @@ const getStorage = () => {
                 carrito: new CarritoMongoDB()
             }
             break
-        case `FilesTXT`:
+        case `firebase`:
             return {
-                productos: new ProductosFiles(),
-                carrito: new CarritoFiles()
+                productos: new ProductosFirebase(),
+                carrito: new CarritoFirebase()
             }
             break
         default:
