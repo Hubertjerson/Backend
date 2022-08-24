@@ -1,25 +1,23 @@
 const autocannon = require('autocannon');
-const PassThrough = require('passThrough');
+const { PassThrough} = require('stream');
 
-function run(url){
-    const buffer =[]
-    const output = new PassThrough();
+function run (url) {
+    const buf = [];
+    const outputStream = new PassThrough();
 
     const inst = autocannon({
         url,
         connections: 100,
-        duration:20
-    })
+        duration: 20
+    });
 
-    autocannon.track(inst,{output});
-    output.on('data',data=>{
-        buffer.push(data);
-    })
+    autocannon.track(inst, {outputStream});
 
-    inst.on('done',() =>{
-        process.stdout.write(Buffer.concat(buffer));
-    })
+    outputStream.on('data', data => buf.push(data));
+    inst.on('done', () => {
+        process.stdout.write(Buffer.concat(buf));
+    });
 }
 
-console.log('Running tests...');
-run('http://localhost:9090/tests/info');
+//console.log('Running tests...');
+run('http://localhost:8080/info');

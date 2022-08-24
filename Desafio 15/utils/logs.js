@@ -12,5 +12,4 @@ log4js.configure({
         errorArchive:{appenders:['errorFile'], level:'error'},
     }
 })
-log4js.getLogger();
 module.exports = log4js;

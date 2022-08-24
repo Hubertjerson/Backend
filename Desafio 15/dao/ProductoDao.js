@@ -1,73 +1,63 @@
-const ProductosModel = require('../models/producto')
-const log4js = require('./utils/logs');
-const loggerArchiveError = log4js.getLogger(`errorArchive`);
+const mongoDB = require(`../config/db`);
+const productsModel = require(`../models/producto`);
 
-class ProductoDao {
-    ID_FIELD = "_id";
-
-    static async exists(id) {
-        try {
-            return await ProductosModel.findById(id);
-        } catch (error) {
-            loggerArchiveError.error(error);
-        }
+class ContenedorProductos {
+    async save(product) {
+        product = new productsModel(product);
+        mongoDB
+            .then(_ => product.save())
+            .then(document => document)
+            .catch(err => console.log(err));
     }
 
     async getAll() {
         try {
-            return await ProductosModel.findAll();
+            let docs = false
+            docs = await productsModel.find();
+            if (docs) {
+                return docs;
+            } else {
+                return false;
+            }
         } catch (error) {
-            loggerArchiveError.error(error);
-            return false;
+            throw Error(`Error en el getAll`)
         }
     }
-
-    async getProductById(objectId) {
+    async getById(idProduct) {
         try {
-            const product = await ProductosModel.findOne({
-                [this.ID_FIELD]: objectId
+            let doc = false;
+            doc = await productsModel.findOne({ _id: idProduct }, { __v: 0 });
+            if (doc) {
+                return doc;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            throw Error(`Error Producto no encontrado`)
+        }
+    }
+    async deleteById(idProduct) {
+        mongoDB
+            .then(_ => productsModel.deleteOne({
+                _id: idProduct
+            }))
+            .catch((error) => console.log(`Error ${error.message}`))
+    }
+    async updateById(idProduct, name, price, url, description, date, code, stock) {
+        mongoDB
+            .then(_ => productsModel.findOne({ _id: idProduct }, { __v: 0 }))
+            .then(product => {
+                product.nombre = name;
+                product.precio = price;
+                product.url = url;
+                product.descripcion = description;
+                product.date = date;
+                product.codigo = code;
+                product.stock = stock;
+                return product.save();
             })
-            return product;
-        } catch (error) {
-            loggerArchiveError.error(error);
-            return false;
-        }
+            .catch(error => console.log(`Error :${error.message}`))
     }
 
-    async createProduct(object) {
-        try {
-            return await ProductosModel.create(object)
-        } catch (error) {
-            loggerArchiveError.error(error);
-            return false;
-        }
-    }
-
-    async updateProductById(id, object) {
-        try {
-            await ProductosModel.findByIdAndUpdate(
-                {
-                    [this.ID_FIELD]: id
-                },
-                object,
-                {
-                    runValidators: true
-                })
-            return true;
-        } catch (error) {
-            loggerArchiveError.error(error);
-            return false;
-        }
-    }
-
-    async deleteProductById(id) {
-        try {
-            return await ProductosModel.findByIdAndDelete({ [this.ID_FIELD]: id })
-        } catch (error) {
-            loggerArchiveError.error(error);
-            return false;
-        }
-    }
 }
-
-module.exports = ProductoDao;
+module.exports = ContenedorProductos;
