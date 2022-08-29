@@ -1,17 +1,7 @@
-const express = require('express')
-const app = express()
-const minimist = require('minimist')
+const express = require('express');
+const app = express();
 
-const options = {
-    alias: {
-        "p": "PORT"
-    },
-    default: {
-        "PORT": 8080
-    }
-};
-
-const { PORT } = minimist(process.argv.slice(2), options);
+const  PORT = 8080
 
 const productRouter = require('./routes/producto')
 const otherRouter = require('./routes/other')
