@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-
-const  PORT = 8080
+const path = require('path');
+const PORT = process.env.PORT || 8080;
 
 const productRouter = require('./routes/producto')
 const otherRouter = require('./routes/other')
@@ -20,11 +20,11 @@ app.use('/api/productos', productRouter);
 app.use('/test', otherRouter);
 
 app.get('/', (req, res) => {
-    res.send('DESAFIO 16 PROYECTO HEROKU FUNCIONANDO');
+    res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 const server = app.listen(PORT, () => {
     loggerConsole.info(`🚀 Server started at http://localhost:${PORT}`)
     })
 
-server.on('error', (err) => loggerArchiveError.error(err));
+server.on('error', (err) => loggerArchiveError.error(err))
