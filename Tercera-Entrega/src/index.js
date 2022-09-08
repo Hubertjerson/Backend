@@ -18,15 +18,6 @@ app.use("/avatar", express.static("./public/avatar"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(session({
-    store: MongoStore.create({
-        ttl:10,
-    }),
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: { maxAge: 600000 }
-}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -52,14 +43,14 @@ const isLogged = ((req, res, next) => {
 });
 
 //Routers import
-const productosRouter = require(`./routes/productosRouter`);
-const carritoRouter = require(`./routes/carritoRouter`);
-const { loginRouter } = require(`./routes/userRouter`);
-const { signupRouter } = require(`./routes/userRouter`);
-const { logoutRouter } = require(`./routes/userRouter`);
-const { profileRouter } = require(`./routes/userRouter`);
-const generalViewsRouter = require(`./routes/generalViewsRouter`);
-const ordenesRouter = require(`./routes/ordenesRouter`);
+const productosRouter = require('./routes/productosRouter')
+const carritoRouter = require('./routes/carritoRouter');
+const { loginRouter } = require('./routes/usuarioRouter');
+const { signupRouter } = require('./routes/usuarioRouter');
+const { logoutRouter } = require('./routes/usuarioRouter');
+const { profileRouter } = require('./routes/usuarioRouter');
+const generalViewsRouter = require('./routes/generalViewsRouter');
+const ordenesRouter = require('./routes/ordenesRouter');
 
 //Routers
 app.use(`/`, generalViewsRouter);
@@ -92,14 +83,14 @@ const runServer = (PORT) => {
     app.listen(PORT, () => loggerConsole.debug(`Servidor escuchando el puerto ${PORT}`));
 }
 if (CLUSTER) {
-    if (CLUSTER.isMaster) {
+    if (cluster.isMaster) {
 
         for (let i = 0; i < numCPUs; i++) {
-            CLUSTER.fork();
+            cluster.fork();
         }
 
-        CLUSTER.on(`exit`, (worker, code, signal) => {
-            CLUSTER.fork();
+        cluster.on(`exit`, (worker, code, signal) => {
+            cluster.fork();
         });
 
     } else {

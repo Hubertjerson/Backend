@@ -1,10 +1,10 @@
-const mongoDB = require(`../../dataBase/options/mongoDB`);
+const mongoDB = require('../config/mongoDB');
 
-const productsModel = require(`../../dataBase/models/producto`);
-const userModel = require(`../../dataBase/models/user`);
-const ordenModel = require(`../../dataBase/models/ordenes`);
+const productsModel = require('../models/producto');
+const userModel = require('../models/usuario');
+const ordenModel = require('../models/ordenes');
 
-const CrudMongoDB = require(`../../dataBase/crudMongoDB/crudOrdenes`);
+const CrudMongoDB = require('../api/ordenesApi');
 
 class OrdenesDAOMongoDB extends CrudMongoDB {
     constructor() {

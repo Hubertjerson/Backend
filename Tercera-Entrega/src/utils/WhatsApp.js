@@ -1,7 +1,7 @@
 const twilio = require(`twilio`);
 
-const ACCOUNT_SID = `AC3ea9961d8a1dda88009f5e64942dcc05`;
-const AUTH_TOKEN = `b26ea369b7ec94e5441a11e7daa06343`;
+const ACCOUNT_SID = `ACb9683f7ba6e03a2b64508326f7e7335e`;
+const AUTH_TOKEN = `afc33eaa90f6bb8759f1cc6bc2d6914d`;
 const PHONE_NUMBER_WHATSAPP = `whatsapp:+14155238886`;
 
 const client = twilio(ACCOUNT_SID, AUTH_TOKEN);
@@ -12,7 +12,7 @@ const sendWhatsApp = async (body, from, to) => {
             body: body,
             from: from,
             to: to
-            //`whatsapp:+59894057052`
+            //`whatsapp:Codigo+Numero
         })
         console.log(message);
 

@@ -7,7 +7,7 @@ const {
   addProductToCart,
   deleteCartById,
   deleteProductById,
-} = require("../controller/carritoController");
+} = require('../controller/carritoController');
 
 const carritoRouter = Router();
 carritoRouter.get(`/:id/productos`, getAllProductsByIdCart);

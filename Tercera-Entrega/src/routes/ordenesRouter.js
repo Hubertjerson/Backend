@@ -3,7 +3,7 @@ const { Router } = require("express");
 const {
     viewOrdenesController,
     createOrdenController
-} = require("../controller/ordenesController");
+} = require('../controller/ordenesController');
 
 const ordenesRouter = Router();
 

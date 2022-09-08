@@ -6,7 +6,7 @@ const {
     bienvenidaController,
     viewFormAddProductController,
     viewErrorController
-} = require(`../controller/generalViewsCotroller`);
+} = require('../controller/generalViewsController');
 
 const viewsRouter = Router();
 

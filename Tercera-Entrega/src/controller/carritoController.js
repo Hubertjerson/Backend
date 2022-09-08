@@ -1,4 +1,4 @@
-const storage = require(`../daos/index`);
+const storage = require('../daos/index');
 
 const productsStorage = storage().carrito;
 

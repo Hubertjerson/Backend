@@ -1,8 +1,8 @@
 const { Router } = require(`express`);
-const login = require("../authentication/login");
-const signup = require("../authentication/signup");
-const serializeUser = require(`../authentication/serializeUser`);
-const deserializeUser = require(`../authentication/deserializeUser`);
+const login = require('../authentication/login');
+const signup = require('../authentication/signup');
+const serializeUser = require('../authentication/serializeUser');
+const deserializeUser = require('../authentication/deserializeUser');
 const passport = require('passport');
 
 const {
@@ -10,7 +10,7 @@ const {
     loginFormController,
     logoutController,
     profileController
-} = require(`../controller/usuarioController`);
+} = require('../controller/usuarioController');
 
 //Multer
 const multer = require('multer');

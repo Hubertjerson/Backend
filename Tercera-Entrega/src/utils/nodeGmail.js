@@ -2,12 +2,12 @@ const { createTransport } = require(`nodemailer`);
 const dotenv = require(`dotenv`);
 dotenv.config();
 
-const EMAIL = process.env.EMAIL;
-const PASS = process.env.PASS_EMAIL_API;
+const EMAIL = process.env.EMAIL; //'evalyn.weber@ethereal.email'
+const PASS = process.env.PASS_EMAIL_API; //'ed2VUgWjYbCzmm8jg4'
 
 const transporter = createTransport({
-    host: `smtp.gmail.com`,
-    port: 465,
+    host: 'smtp.ethereal.email',
+    port: 587,
     auth: {
         user: EMAIL,
         pass: PASS
