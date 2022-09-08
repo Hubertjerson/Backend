@@ -1,4 +1,4 @@
-const storage = require(`../daos/index`);
+const storage = require('../daos/index');
 
 const ordenesStorage = storage().ordenes;
 
@@ -18,7 +18,7 @@ const createOrdenController = async (req, res) => {
                 -La función encargada de realizar el envío de SMS se encuentra comentada ya que genera gastos.
                 -La función encargada de realizar el envío de whatsapp se encuentra comentada ya que genera gastos.
         */
-        //sendSMS(`Su pedido ha sido recibido y se encuentra en proceso`, `+14057251618`, `+59894057052`);
+        //sendSMS(`Su pedido ha sido recibido y se encuentra en proceso`, `+15735313920`, `Codigo+Numero`);
         //auxWhatsApp(userLog, orden);
 
         return res.render(`compraFinalizada`);
@@ -85,7 +85,7 @@ const auxWhatsApp = async (userLog, orden) => {
         Pedido:
         ${detallePedido}
         `;
-    await sendWhatsApp(body, `whatsapp:+14155238886`, `whatsapp:+59894057052`);
+    await sendWhatsApp(body, `whatsapp:+14155238886`,) //`whatsapp:+56946527196`);Poner Su Numero
 }
 
 module.exports = {
