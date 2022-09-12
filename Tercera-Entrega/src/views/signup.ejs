@@ -3,15 +3,9 @@
 
 <head>
   <%- include('./partials/header') %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
 
 <body>
-  <header>
-    <%- include('./partials/header', {current: `formProductos`}) %>
-  </header>
-
   <main>
     <div class="jumbotron">
       <div class="jumbotron">
@@ -52,24 +46,17 @@
             <input type="text" id="typeEmailX" name="direccion" class="form-control form-control-lg" required
               minlength="5" />
           </div>
-
           <p>Foto</p>
-
           <div>
             <input type="file" id="typeEmailX" name="avatar" required />
-
           </div>
-
           <br>
           <button class="btn btn-primary" type="submit">Registrarse</button>
 
         </form>
       </div>
     </div>
-
   </main>
-
-
 </body>
 
 </html>

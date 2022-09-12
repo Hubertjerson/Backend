@@ -18,6 +18,17 @@ app.use("/avatar", express.static("./public/avatar"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(session({
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost:27017/ecommerce',
+        ttl: 10,
+    }),
+    secret: 1234,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 600000 }
+}));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
