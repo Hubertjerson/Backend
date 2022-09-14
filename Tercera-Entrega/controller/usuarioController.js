@@ -28,7 +28,7 @@ const register = async (req, res) => {
                         telefono,
                         edad,
                         direccion,
-                        foto:file.filename
+                        foto:file.filename,
                     });
 
                     // Creamos el Envio de Email
