@@ -6,27 +6,26 @@ const sendEmail = require('../utils/nodeGmail');
 
 const register = async (req, res) => {
     try{
-        const { nombre, correo, contraseña, telefono,edad,direccion } = req.body;
+        const { nombre, correo, contrasena, telefono,edad,direccion } = req.body;
         const {foto} = req.file;
         const user = await Usuario.findOne({ correo });
         //Reviso si existe un usuario con el correo
         if(user){
             return res.json("Ya exister un usuario con el correo");
         // Revisamos si lleno todos los campos
-        } else if (!nombre || !correo || !contraseña || !edad || !telefono || !direccion ){
+        } else if (!nombre || !correo || !contrasena || !edad || !telefono || !direccion ){
             return res.json("Falta el nombre / correo/ contraseña / edad / telefono / direccion");
         }else{
             //encripto la contraseña
-            bcrypt.hash(contraseña, 10, (error, contraseñaHasheada)=> {
+            bcrypt.hash(contrasena, 10, async (error, contrasenaHasheada)=> {
                 if(error){
                     res.json({ error })
                 }else {
-                    console.log(nombre)
                     // Creamos un objeto usuario
                     const nuevoUsuario = new Usuario({
                         nombre,
                         correo,
-                        contraseña:contraseñaHasheada,
+                        contrasena:contrasenaHasheada,
                         telefono,
                         edad,
                         direccion,
@@ -35,8 +34,8 @@ const register = async (req, res) => {
 
                     // Creamos el Envio de Email
                     const mailOptions = {
-                        from: 'barlocco@hotmail.es',
-                        to: `brionna.daniel81@ethereal.email`,
+                        from: 'brionna.daniel81@ethereal.email',
+                        to: 'barlocco@hotmail.es',
                         subject: `Nuevo registro`,
                         html: `
                                 <h3>Nuevo registro de usuario!</h3>
@@ -51,9 +50,9 @@ const register = async (req, res) => {
                     `
                     }
                     // Pasamos a guardar
-                    const userSave = nuevoUsuario.save();
-                    const email= sendEmail(mailOptions);
-                    return res.json("Usuario Creado Correctamente", userSave,email);
+                    const userSave = await nuevoUsuario.save();
+                    //const email= await sendEmail(mailOptions);
+                    return res.json(userSave);
                 }
             })
         }
@@ -64,14 +63,14 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    const { correo, contraseña } = req.body;
+    const { correo, contrasena } = req.body;
     // Vemos Si existe el Correo ingresado
     Usuario.findOne({ correo }).then((usuario) => {
         if (!usuario) {
             return res.json({ mensaje: "Usuario no encontrado" });
         }
         // Vemos Si existe la Contraseña Ingresada
-        bcrypt.compare(contraseña, usuario.contraseña).then((esCorrecta) => {
+        bcrypt.compare(contrasena, usuario.contrasena).then((esCorrecta) => {
             if (esCorrecta) {
                 const { id, nombre } = usuario;
 
@@ -106,7 +105,7 @@ const getUserById = (req, res) => {
             if(!usuario){
                 return res.json({mensaje: "No se Encontro ningun usuario con esa ID"})
             } else {
-                const { _id, contraseña, __v, ...resto } = usuario._doc;
+                const { _id, contrasena, __v, ...resto } = usuario._doc;
                 res.json(resto);
             }
         });
