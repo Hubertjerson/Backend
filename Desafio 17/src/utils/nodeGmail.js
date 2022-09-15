@@ -4,8 +4,8 @@ const loggerConsole = log4js.getLogger('default');
 const loggerArchiveError = log4js.getLogger(`errorArchive`);
 require('dotenv').config()
 
-const EMAIL = process.env.EMAIL
-const PASS = process.env.PASS
+const EMAIL = process.env.EMAIL //'brionna.daniel81@ethereal.email'
+const PASS = process.env.PASS // 'xEXPWptQHMJdHdE9Ur'
 
 const transporter = createTransport({
     host: 'smtp.ethereal.email',

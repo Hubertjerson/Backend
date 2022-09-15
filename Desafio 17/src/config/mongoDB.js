@@ -4,7 +4,7 @@ const loggerConsole = log4js.getLogger('default');
 const loggerArchiveError = log4js.getLogger(`errorArchive`);
 require('dotenv').config()
 
-const URL = process.env.MONGOURL;
+const URL = process.env.MONGOURL; //'mongodb://localhost:27017/ecommerce'
 
 //  database connection with mongoose
 
