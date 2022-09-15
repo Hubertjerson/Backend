@@ -7,7 +7,6 @@ const sendEmail = require('../utils/nodeGmail');
 const register = async (req, res) => {
     try{
         const { nombre, correo, contraseña, telefono,edad,direccion } = req.body;
-        const {foto} = req.file;
         const user = await Usuario.findOne({ correo });
         //Reviso si existe un usuario con el correo
         if(user){
@@ -30,7 +29,6 @@ const register = async (req, res) => {
                         telefono,
                         edad,
                         direccion,
-                        foto
                     });
 
                     // Creamos el Envio de Email
