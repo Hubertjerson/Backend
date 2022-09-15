@@ -12,7 +12,7 @@ const {
 /* ------------------------ CarritoRouter ------------------------- */
 
 // GET api/carrito/:id/productos
-carritoRouter.get(`/:id/productos`, getAllProductsByIdCart);
+carritoRouter.get(`/:id/productos`,Token, getAllProductsByIdCart);
 
 // POST /api/carrito
 carritoRouter.post(`/`, Token, createCart);
