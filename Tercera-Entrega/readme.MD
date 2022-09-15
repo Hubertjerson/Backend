@@ -16,8 +16,6 @@
 | POST    | **/api/carrito/:idCar/:idProd**        | Me permite ver el carrito seleccionado por ID y el producto seleccionado por ID / Se necesita Token|
 | DELETE    | **/api/carrito/id**        |Me permite eliminar un carrito seleccionado por ID / Se necesita Token|
 | DELETE    | **/api/carrito/:id/productos/:idProd**        |Me permite eliminar un producto seleccionado por ID  del carrito seleccionado por ID / Se necesita Token|
-| GET    | **/api/test/info**        | Muestra información relativa a la app |
-
 
 ## Consejos
 Todo es por via POSTMAN <br>
