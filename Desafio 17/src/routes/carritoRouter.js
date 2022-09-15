@@ -1,5 +1,6 @@
 const express = require('express')
 const carritoRouter = express.Router();
+const Token = require("../middlewares/token");
 const {
     getAllProductsByIdCart,
     createCart,
@@ -14,15 +15,15 @@ const {
 carritoRouter.get(`/:id/productos`, getAllProductsByIdCart);
 
 // POST /api/carrito
-carritoRouter.post(`/`, createCart);
+carritoRouter.post(`/`, Token, createCart);
 
 // POST /api/carrito/:idCar/:idProd
-carritoRouter.post(`/:idCar/:idProd`, addProduct);
+carritoRouter.post(`/:idCar/:idProd`,Token, addProduct);
 
 // DELETE /api/carrito/id
-carritoRouter.delete(`/:id`, deleteCartById);
+carritoRouter.delete(`/:id`,Token, deleteCartById);
 
 // DELETE /api/carrito/:id/productos/:idProd
-carritoRouter.delete(`/:id/productos/:id_prod`, deleteProductById);
+carritoRouter.delete(`/:id/productos/:id_prod`,Token, deleteProductById);
 
 module.exports = carritoRouter;

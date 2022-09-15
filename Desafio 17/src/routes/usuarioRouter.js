@@ -1,6 +1,5 @@
 const express = require('express')
 const usuarioRouter = express.Router();
-const upload = require('../libs/storage')
 const Token = require("../middlewares/token");
 const {
     register,
@@ -14,7 +13,7 @@ const {
 usuarioRouter.post("/login", login);
 
 // POST api/usuario/register
-usuarioRouter.post("/register", upload.single('foto'), register);
+usuarioRouter.post("/register", register);
 
 // GET api/usuario/user
 usuarioRouter.get("/user", Token, getUserById);

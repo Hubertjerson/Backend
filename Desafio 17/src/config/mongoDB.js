@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const log4js = require('../utils/log');
+const loggerConsole = log4js.getLogger('default');
+const loggerArchiveError = log4js.getLogger(`errorArchive`);
 require('dotenv').config()
 
 const URL = process.env.MONGOURL;
@@ -9,7 +12,7 @@ const connection = mongoose.connect(URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
-    .then(() => console.log("Conectado a MONGODB"))
-    .catch((e) => console.log("Error en la coneccion de MONGODB", e))
+    .then(() => loggerConsole.info("Conectado a MONGODB"))
+    .catch((e) => loggerArchiveError.error("Error en la coneccion de MONGODB", e))
 
 module.exports = connection;

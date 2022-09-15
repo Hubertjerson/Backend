@@ -1,4 +1,7 @@
 const { createTransport } = require(`nodemailer`);
+const log4js = require('./log');
+const loggerConsole = log4js.getLogger('default');
+const loggerArchiveError = log4js.getLogger(`errorArchive`);
 require('dotenv').config()
 
 const EMAIL = process.env.EMAIL
@@ -16,10 +19,10 @@ const transporter = createTransport({
 const sendEmail = async (options) => {
     try {
         const response = await transporter.sendMail(options);
-        console.log(response);
+        loggerConsole.info(response);
 
     } catch (e) {
-        console.error(e);
+        loggerArchiveError.error(e);
     }
 }
 

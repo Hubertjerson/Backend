@@ -12,7 +12,7 @@ const carritoRouter = require('./routes/carritoRouter');
 const usuarioRouter = require('./routes/usuarioRouter')
 const otherRouter = require('./routes/otherRouter')
 
-const log4js = require('./utils/logs');
+const log4js = require('./utils/log');
 const loggerConsole = log4js.getLogger('default');
 const loggerArchiveWarn = log4js.getLogger('warnArchive');
 const loggerArchiveError = log4js.getLogger(`errorArchive`);

@@ -1,4 +1,4 @@
-const Usuario = require("../models/usuario");
+const Usuario = require("../models/usuarioModels");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendEmail = require('../utils/nodeGmail');
@@ -18,7 +18,7 @@ const register = async (req, res) => {
             //encripto la contraseña
             bcrypt.hash(contraseña, 10, (error, contraseñaHasheada)=> {
                 if(error){
-                    res.json({ error })
+                    res.json({ mensaje:"Estas enviando una contraseña incorrecta", error })
                 }else {
                     console.log(nombre)
                     // Creamos un objeto usuario
@@ -33,8 +33,8 @@ const register = async (req, res) => {
 
                     // Creamos el Envio de Email
                     const mailOptions = {
-                        from: 'barlocco@hotmail.es',
-                        to: `brionna.daniel81@ethereal.email`,
+                        from: process.env.EMAIL,
+                        to: 'barlocco@hotmail.es',
                         subject: `Nuevo registro`,
                         html: `
                                 <h3>Nuevo registro de usuario!</h3>

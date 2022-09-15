@@ -10,7 +10,5 @@ const {
 // GET api/test/info
 otherRouter.get('/info', prosInfo)
 
-// GET api/test/randoms
-otherRouter.get('/randoms', generador)
 
 module.exports = otherRouter
