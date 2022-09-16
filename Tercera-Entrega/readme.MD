@@ -1,4 +1,10 @@
 # Tercer entrega del proyecto final
+## Consejos
+Todo es por via POSTMAN <br>
+Se Necesita un Token Para acceder algunas Rutas <br>
+El Token se genera Luego de Iniciar sesion <br>
+Si deseo Hacer una orden de compra Necesita hacer un login para obtener su token
+
 ## Rutas
 
 | Método | Endpoint                | Descripción                                                                                                                                                                                                                 |
@@ -17,12 +23,6 @@
 | DELETE    | **/api/carrito/id**        |Me permite eliminar un carrito seleccionado por ID / Se necesita Token|
 | DELETE    | **/api/carrito/:id/productos/:idProd**        |Me permite eliminar un producto seleccionado por ID  del carrito seleccionado por ID / Se necesita Token|
 | GET   | **/api/ordenes/:idCar**        |Se genera una orden de compra con respecto al carrito del ID dado y le llega un mensaje al usuario que lo genero / Se necesita Token|
-
-## Consejos
-Todo es por via POSTMAN <br>
-Se Necesita un Token Para acceder algunas Rutas <br>
-El Token se genera Luego de Iniciar sesion <br>
-Si deseo Hacer una orden de compra Necesita hacer un login para obtener su token
 
 
 # REGISTRO DE USUARIOS Y ENVIO DE EMAIL

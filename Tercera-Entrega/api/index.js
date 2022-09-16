@@ -1,8 +1,9 @@
 const ProductosMongoDB = require('./productosApi');
 const CarritoMongoDB = require('./carritoApi');
+require('dotenv').config()
 
 const getStorage = () => {
-    const storage = `firebase`;
+    const storage = process.env.STORAGE;
     switch (storage) {
         case `MongoDB`:
             return {
