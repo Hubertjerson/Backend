@@ -1,26 +1,34 @@
-const { check } = require('express-validator');
+const { body }  = require('express-validator');
+const validateResult = require('./validatorResult')
+
 
 const validaRegister = [
-    check('nombre', "No ingreso su nombre")
+    body('nombre', "No ingreso su nombre")
         .trim()
-        .exists()
-        .not()
-        .isEmpty(),
-    check('correo')
+        .exists(),
+    body('correo', "Debe ingresar su correo")
         .trim()
         .exists()
         .isEmail()
         .normalizeEmail(),
-    check('contrasena', "Debe tener minimo 6 caracteres")
+    body('contrasena', "Debe tener minimo 6 caracteres")
         .trim()
         //.isStrongPassword(), // Activar si desea una contraseña extremadamente segura
         .isLength({min:6}),
-    check('telefono')
+    body('telefono', "debe ingresar un numero de telefono")
+        .trim()
         .exists()
         .isNumeric(),
-    check('edad'),
-    check('direccion'),
-
+    body('edad', "debe ingresar su edad")
+        .trim()
+        .exists()
+        .isNumeric(),
+    body('direccion',"Debe ingresar su direccion")
+        .trim()
+        .exists(),
+    (req, res, next) => {
+        validateResult(req, res, next)
+    }
 ];
 
 module.exports = validaRegister;

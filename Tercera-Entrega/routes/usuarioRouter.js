@@ -2,6 +2,8 @@ const express = require('express')
 const usuarioRouter = express.Router();
 const upload = require('../libs/storage')
 const Token = require("../middlewares/token");
+// const validaRegister  = require('../middlewares/validator')
+
 const {
     register,
     login,
@@ -14,7 +16,7 @@ const {
 usuarioRouter.post("/login", login);
 
 // POST api/usuario/register
-usuarioRouter.post("/register", upload.single('foto'), register);
+usuarioRouter.post("/register", /*validaRegister,*/ upload.single('foto') , register);
 
 // GET api/usuario/user
 usuarioRouter.get("/user", Token, getUserById);
