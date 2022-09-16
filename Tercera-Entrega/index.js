@@ -10,7 +10,8 @@ require('dotenv').config()
 //Router Import
 const productosRouter = require('./routes/productosRouter');
 const carritoRouter = require('./routes/carritoRouter');
-const usuarioRouter = require('./routes/usuarioRouter')
+const usuarioRouter = require('./routes/usuarioRouter');
+const ordenRouter = require('./routes/ordenRouter');
 
 const log4js = require('./utils/log');
 const loggerConsole = log4js.getLogger('default');
@@ -40,6 +41,7 @@ app.use(session({
 app.use(`/api/productos`, productosRouter);
 app.use(`/api/carrito`, carritoRouter);
 app.use('/api/usuario', usuarioRouter)
+app.use('/api/ordenes', ordenRouter);
 
 
 app.use((req, res, next) => {
