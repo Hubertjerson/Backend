@@ -5,6 +5,9 @@ const {
     checkout
 } = require('../controller/ordenesController')
 
+/* ------------------------ OrdenesRouter ------------------------- */
+
+// GET api/ordenes/:idCar
 ordenRouter.get('/:idCar', Token, checkout);
 
 module.exports = ordenRouter
