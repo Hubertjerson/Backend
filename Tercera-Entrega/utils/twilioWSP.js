@@ -1,4 +1,6 @@
 const twilio = require(`twilio`);
+const log4js = require('./log');
+const loggerConsole = log4js.getLogger('default');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -11,10 +13,12 @@ const sendWhatsApp = async (body, from, to) => {
             from: from,
             to: to
         })
-        console.log(message);
+        loggerConsole.info(message);
 
-    } catch (e) {
-        console.error(e.message);
+    } catch (err) {
+        return res.status(404).json({
+            error: `Error al enviarme el mensaje de WhatsApp ${err}`
+        });
     }
 
 }

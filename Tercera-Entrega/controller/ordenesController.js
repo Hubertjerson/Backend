@@ -39,17 +39,17 @@ const checkout = async (req, res) => {
             `Nuevo pedido!
             Datos del cliente:
             Nombre: ${user.nombre}
-            ${user.correo}
+            Correo: ${user.correo}
             Teléfono: ${user.telefono}
             Direccion: ${user.direccion}
             Pedido:
             ${productos}
             `;
-        
+
         const WSHTP = await sendWhatsApp(WhatsApp, process.env.TWILIO_WSP, process.env.TWILIO_WSP_USER)
         const email = await sendEmail(mailOptions);
-        sendSMS(`Hola ${user.nombre} hemos recibido tu pedido con exito.`, process.env.NUMERO_TWILIO, process.env.NUMERO_USER )
-        return res.json({ mensaje: "Su compra a sido Exitosa", productos, email , WSHTP });
+        sendSMS(`Hola ${user.nombre} hemos recibido tu pedido con exito.`, process.env.NUMERO_TWILIO, process.env.NUMERO_USER)
+        return res.json({ mensaje: "Su compra a sido Exitosa", productos, email, WSHTP });
 
     } catch (err) {
         res.status(404).json({ err: `Error al intentar comprar ${err}` });

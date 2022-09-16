@@ -1,4 +1,6 @@
 const twilio = require(`twilio`);
+const log4js = require('./log');
+const loggerConsole = log4js.getLogger('default');
 require('dotenv').config()
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -12,7 +14,11 @@ const mensajesSMS = async (body, from, to) => {
             from: from,
             to: to,
         });
-        console.log(menssage);
-    } catch (e) { }
+        loggerConsole.info(menssage);
+    } catch (err) {
+        return res.status(404).json({
+            error: `Error al enviar el mensaje ${err}`
+        });
+    }
 }
 module.exports = mensajesSMS;
