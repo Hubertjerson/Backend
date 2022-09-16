@@ -2,7 +2,7 @@ const Usuario = require("../models/usuario");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendEmail = require('../utils/nodeGmail');
-
+require('dotenv').config()
 
 const register = async (req, res) => {
     try {
@@ -33,7 +33,7 @@ const register = async (req, res) => {
 
                     // Creamos el Envio de Email
                     const mailOptions = {
-                        from: 'brionna.daniel81@ethereal.email',
+                        from: process.env.EMAIL,
                         to: 'barlocco@hotmail.es',
                         subject: `Nuevo registro`,
                         html: `
@@ -79,7 +79,7 @@ const login = async (req, res) => {
                         nombre,
                     };
                     // Creamos un Token
-                    const token = jwt.sign(data, "secreto", {
+                    const token = jwt.sign(data, process.env.JWT_Key, {
                         expiresIn: 86400 // Dura 24hrs
                     });
 
