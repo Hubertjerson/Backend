@@ -21,5 +21,4 @@ usuarioRouter.post("/register", /*validaRegister,*/ upload.single('foto') , regi
 // GET api/usuario/user
 usuarioRouter.get("/user", Token, getUserById);
 
-
 module.exports = usuarioRouter;
