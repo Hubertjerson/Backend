@@ -18,5 +18,16 @@
     "nodemon": "^2.0.19",
     "twilio": "^3.82.0",
     "validator": "^13.7.0"
-  }
+  },
+  "name": "tercera-entrega",
+  "description": "Todo es por via POSTMAN <br>\r Se Necesita un Token Para acceder algunas Rutas <br>\r El Token se genera Luego de Iniciar sesion <br>\r Si deseo Hacer una orden de compra Necesita hacer un login para obtener su token",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
