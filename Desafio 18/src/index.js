@@ -11,7 +11,7 @@ const productosRouter = require('./routes/productoRouter');
 const carritoRouter = require('./routes/carritoRouter');
 const usuarioRouter = require('./routes/usuarioRouter')
 const otherRouter = require('./routes/otherRouter')
-const testRouter = require('./routes/testRouter')
+
 
 const log4js = require('./utils/log');
 const loggerConsole = log4js.getLogger('default');
@@ -43,7 +43,6 @@ app.use(`/api/productos`, productosRouter);
 app.use(`/api/carrito`, carritoRouter);
 app.use('/api/usuario', usuarioRouter)
 app.use('/api/other', otherRouter);
-app.use('/api/test', testRouter);
 
 
 
@@ -64,3 +63,5 @@ const server = app.listen(PORT, () => {
     })
 
 server.on('error', (err) => loggerArchiveError.error(err))
+
+module.exports = app;
