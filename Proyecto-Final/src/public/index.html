@@ -1,12 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>CODER HOUSE</title>
 </head>
+
 <body>
-    <h1>DESAFIO FINAL BACKEND CODERHOUSE</h1>
+    <div class="container mt-3 jumbotron">
+
+        <h1 class="text-center">DESAFIO FINAL BACKEND CODERHOUSE</h1>
+    </div>
+    <hr class="my-4">
+    <ul class="text-center">
+        <p>
+        <h1>Consejos</h1>
+        Todo es por via POSTMAN <br>
+        Se Necesita un Token Para acceder algunas Rutas <br>
+        El Token se genera Luego de Iniciar sesion <br>
+        Si deseo Hacer una orden de compra Necesita hacer un login para obtener su token
+        </p>
+    </ul>
+    <hr class="my-4">
+    <h1 class="text-center">RUTAS</h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Método</th>
+                <th scope="col">Endpoint</th>
+                <th scope="col">Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>POST</td>
+                <td>api/usuario/login</td>
+                <td>Inicio de sesion de usuarios se les dara un Token para que puedan Acceder a las demas rutas</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>api/usuario/register</td>
+                <td>Registro de usuarios se alamacena en MongoDB</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>api/usuario/user</td>
+                <td>Envia a ver la informacion del usuario que se registro / Se necesita Token</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>api/productos</td>
+                <td>Me permite listar todos los productos disponibles</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>api/productos</td>
+                <td>Para incorporar productos al listado / Se necesita Token</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>api/productos/:id</td>
+                <td>Permite ver un producto especifico dando en ID / Se necesita Token</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>api/productos/:id</td>
+                <td>Permite Editar el producto Seleccionado por ID / Se necesita Token</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>api/carrito</td>
+                <td>Me permite crear un carrito / Se necesita Token</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>api/carrito/:id/productos</td>
+                <td>	Me permite ver el carrito seleccionado por ID y sus productos / Se necesita Token</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>api/carrito/:idCar/:idProd</td>
+                <td>Me permite ver el carrito seleccionado por ID y el producto seleccionado por ID / Se necesita Token</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>api/carrito/id</td>
+                <td>Me permite eliminar un carrito seleccionado por ID / Se necesita Token</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>api/carrito/:id/productos/:idProd</td>
+                <td>Me permite eliminar un producto dentro del carrito seleccionandolo por ID del carrito y seleccionado por ID de producto / Se necesita Toke</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>api/ordenes/:idCar</td>
+                <td>Se genera una orden de compra con respecto al carrito del ID dado y le llega un mensaje al usuario que lo genero / Se necesita Token</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr class="my-4">
+
+    <footer class="jumbotron">
+        <div class="col-md-12 text-center">
+            <p>Programación backend - Coderhouse - NodeJs - JERSON HUAMAN</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
