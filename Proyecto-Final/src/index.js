@@ -4,7 +4,10 @@ const cors = require("cors");
 const session = require('express-session');
 const MongoStore = require(`connect-mongo`);
 const path = require('path');
-require('dotenv').config()
+if (process.env.NODE_ENV === 'production'){
+    require('dotenv').config()
+}
+
 
 //Router Import
 const productosRouter = require('./routes/productosRouter');
