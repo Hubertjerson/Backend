@@ -29,3 +29,17 @@ Si deseo Hacer una orden de compra Necesita hacer un login para obtener su token
 
 **Deploy:**
 https://backendcoderjerson.herokuapp.com/
+
+## Academy
+> [CODERHOUSE](https://www.coderhouse.cl/)
+
+## Course
+> [Back-End Node Js](https://www.coderhouse.cl/online/programacion-backend)
+
+## Teach & tutor
+> <p>Comisión: 30980.</p>
+> <p>Teach: Hernan Diaz</p>
+> <p>Tutor: Rolando Juaniquina.</p> 
+
+## Author
+> <p>Jerson Huaman. </p>

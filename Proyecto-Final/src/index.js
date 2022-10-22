@@ -4,9 +4,8 @@ const cors = require("cors");
 const session = require('express-session');
 const MongoStore = require(`connect-mongo`);
 const path = require('path');
-if (process.env.NODE_ENV === 'production'){
-    require('dotenv').config()
-}
+require('dotenv').config()
+
 
 
 //Router Import
@@ -62,17 +61,7 @@ app.use((req, res, next) => {
     next();
 });
 
-const options = {
-    alias: {
-        "p": "PORT"
-    },
-    default: {
-        "PORT": process.env.PORT
-    }
-};
-const minimist = require(`minimist`);
-
-const { PORT } = minimist(process.argv.slice(2), options);
+const PORT = process.env.PORT || 8080;
 
 const server = app.listen(PORT, () => {
     loggerConsole.info(`🚀 Server started at http://localhost:${PORT}`)
